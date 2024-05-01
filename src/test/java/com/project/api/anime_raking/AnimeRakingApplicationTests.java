@@ -1,4 +1,4 @@
-package com.project.api.react.anime_raking;
+package com.project.api.anime_raking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
