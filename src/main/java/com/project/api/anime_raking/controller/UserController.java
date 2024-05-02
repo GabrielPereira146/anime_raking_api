@@ -29,7 +29,11 @@ public class UserController {
         var user = this.usersRepository.findByUsername(userData.getUsername());
 
         if (user != null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario já existe");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("username is already in use");
+        }
+        user = this.usersRepository.findByEmail(userData.getEmail());
+        if (user != null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already in use");
         }
 
         var passwordHashred = BCrypt.withDefaults().hashToString(12, userData.getUser_password().toCharArray());
