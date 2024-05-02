@@ -1,8 +1,11 @@
 package com.project.api.anime_raking.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +19,7 @@ import com.project.api.anime_raking.users.UsersRequestDTO;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/users")
 public class UserController {
 
@@ -23,9 +27,8 @@ public class UserController {
     private UsersRepository usersRepository;
 
     @PostMapping("/auth/register")
-    public ResponseEntity registerUser(@RequestBody UsersRequestDTO data){
+    public ResponseEntity registerUser(@RequestBody UsersRequestDTO data) throws ParseException{
         Users userData = new Users(data);
-
         var user = this.usersRepository.findByUsername(userData.getUsername());
 
         if (user != null){
