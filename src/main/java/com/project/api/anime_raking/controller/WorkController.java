@@ -11,6 +11,8 @@ import com.project.api.anime_raking.works.WorksRepository;
 import com.project.api.anime_raking.works.WorksResponseDTO;
 import com.project.api.anime_raking.works.anime.AnimeRepository;
 import com.project.api.anime_raking.works.anime.AnimeResponseDTO;
+import com.project.api.anime_raking.works.manga.MangaRepository;
+import com.project.api.anime_raking.works.manga.MangaResponseDTO;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -23,6 +25,8 @@ public class WorkController {
     private WorksRepository worksRepository;
     @Autowired
     private AnimeRepository animeRepository;
+    @Autowired
+    private MangaRepository mangaRepository;
 
     @GetMapping("/")
     public List<WorksResponseDTO> getAll() {
@@ -36,5 +40,11 @@ public class WorkController {
         List<AnimeResponseDTO> animeList = animeRepository.findAll().stream().map(AnimeResponseDTO::new).toList();
         return animeList;
 
+    }
+
+    @GetMapping("/mangas")
+    public List<MangaResponseDTO> getAllMangas() {
+        List<MangaResponseDTO> mangaList = mangaRepository.findAll().stream().map(MangaResponseDTO::new).toList();
+        return mangaList;
     }
 }
