@@ -2,16 +2,16 @@ package com.project.api.anime_raking.works;
 
 import java.sql.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "work_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "works")
-@Entity(name = "works")
 
 @Data
 @NoArgsConstructor
@@ -27,5 +27,5 @@ public class Works {
     private String synopsis;
     private String author;
     private Float averageGrade;
-    private String workType;
+
 }
