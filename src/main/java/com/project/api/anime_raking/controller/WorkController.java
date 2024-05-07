@@ -1,5 +1,6 @@
 package com.project.api.anime_raking.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,9 @@ public class WorkController {
 
     @GetMapping("/bestWorks")
     public List<WorksResponseDTO> getBestWorks() {
-        List<WorksResponseDTO> workList = worksRepository.findBestWorks().stream().map(WorksResponseDTO::new).toList();
+        LocalDate startDate = LocalDate.now().minusMonths(5);
+        LocalDate endDate = LocalDate.now();
+        List<WorksResponseDTO> workList = worksRepository.findBestWorks(startDate, endDate).stream().map(WorksResponseDTO::new).toList();
         return workList;
 
     }
