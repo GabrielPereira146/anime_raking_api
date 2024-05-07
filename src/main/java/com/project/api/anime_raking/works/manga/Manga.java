@@ -1,6 +1,5 @@
 package com.project.api.anime_raking.works.manga;
 
-
 import com.project.api.anime_raking.works.Works;
 
 import jakarta.persistence.Entity;
@@ -16,7 +15,8 @@ import lombok.NoArgsConstructor;
 
 @Entity(name = "MANGA")
 @Table(name = "manga")
+
 @PrimaryKeyJoinColumn(name = "title") 
-public class Manga extends Works{
+public class Manga extends Works {
     private int volumes;
 }

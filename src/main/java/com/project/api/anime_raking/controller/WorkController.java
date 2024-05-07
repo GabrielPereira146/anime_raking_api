@@ -35,6 +35,13 @@ public class WorkController {
 
     }
 
+    @GetMapping("/bestWorks")
+    public List<WorksResponseDTO> getBestWorks() {
+        List<WorksResponseDTO> workList = worksRepository.findBestWorks().stream().map(WorksResponseDTO::new).toList();
+        return workList;
+
+    }
+
     @GetMapping("/animes")
     public List<AnimeResponseDTO> getAllAnimes() {
         List<AnimeResponseDTO> animeList = animeRepository.findAll().stream().map(AnimeResponseDTO::new).toList();

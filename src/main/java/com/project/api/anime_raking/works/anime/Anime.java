@@ -15,9 +15,10 @@ import lombok.NoArgsConstructor;
 
 @Entity(name = "ANIME")
 @Table(name = "anime")
-@PrimaryKeyJoinColumn(name = "title") 
+
+@PrimaryKeyJoinColumn(name = "title")
 public class Anime extends Works {
- 
+
     private int episodes;
 
 }
