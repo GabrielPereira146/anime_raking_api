@@ -28,6 +28,8 @@ public class WorkController {
     private AnimeRepository animeRepository;
     @Autowired
     private MangaRepository mangaRepository;
+    LocalDate startDate = LocalDate.now().minusMonths(5);
+    LocalDate endDate = LocalDate.now();
 
     @GetMapping("/")
     public List<WorksResponseDTO> getAll() {
@@ -38,9 +40,9 @@ public class WorkController {
 
     @GetMapping("/bestWorks")
     public List<WorksResponseDTO> getBestWorks() {
-        LocalDate startDate = LocalDate.now().minusMonths(5);
-        LocalDate endDate = LocalDate.now();
-        List<WorksResponseDTO> workList = worksRepository.findBestWorks(startDate, endDate).stream().map(WorksResponseDTO::new).toList();
+
+        List<WorksResponseDTO> workList = worksRepository.findBestWorks(startDate, endDate).stream()
+                .map(WorksResponseDTO::new).toList();
         return workList;
 
     }
@@ -48,6 +50,14 @@ public class WorkController {
     @GetMapping("/animes")
     public List<AnimeResponseDTO> getAllAnimes() {
         List<AnimeResponseDTO> animeList = animeRepository.findAll().stream().map(AnimeResponseDTO::new).toList();
+        return animeList;
+
+    }
+
+    @GetMapping("/animes/season")
+    public List<AnimeResponseDTO> getSeasonAnimes() {
+        List<AnimeResponseDTO> animeList = animeRepository.findSeasonAnime(startDate, endDate).stream()
+                .map(AnimeResponseDTO::new).toList();
         return animeList;
 
     }

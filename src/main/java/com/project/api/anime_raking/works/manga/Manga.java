@@ -19,6 +19,6 @@ import lombok.NoArgsConstructor;
 
 public class Manga extends Works{
 
-    private Integer volumes;
+    private int volumes;
 
 }
