@@ -47,7 +47,7 @@ public class WorkController {
 
     }
 
-    @GetMapping("/animes")
+    @GetMapping("/animes/")
     public List<AnimeResponseDTO> getAllAnimes() {
         List<AnimeResponseDTO> animeList = animeRepository.findAll().stream().map(AnimeResponseDTO::new).toList();
         return animeList;
@@ -66,5 +66,13 @@ public class WorkController {
     public List<MangaResponseDTO> getAllMangas() {
         List<MangaResponseDTO> mangaList = mangaRepository.findAll().stream().map(MangaResponseDTO::new).toList();
         return mangaList;
+    }
+
+    @GetMapping("/mangas/season")
+    public List<MangaResponseDTO> getSeasonMangas() {
+        List<MangaResponseDTO> mangaList = mangaRepository.findSeasonManga(startDate, endDate).stream()
+                .map(MangaResponseDTO::new).toList();
+        return mangaList;
+
     }
 }

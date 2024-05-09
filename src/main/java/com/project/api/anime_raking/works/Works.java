@@ -29,6 +29,7 @@ public class Works {
     private String synopsis;
     private String author;
     private Float averageGrade;
+    private String status;
 
     @Id
     @Column(name = "work_type", insertable = false, updatable = false)

@@ -11,6 +11,6 @@ import com.project.api.anime_raking.works.WorkIdClass;
 
 public interface AnimeRepository extends JpaRepository<Anime, WorkIdClass> {
 
-    @Query("SELECT a FROM ANIME a WHERE a.releaseDate >= :startDate AND a.releaseDate <= :endDate ORDER BY a.releaseDate")
+    @Query("SELECT a FROM ANIME a WHERE a.releaseDate >= :startDate AND a.releaseDate <= :endDate or a.status = 'Ongoing' ORDER BY a.releaseDate")
     List<Anime> findSeasonAnime(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }
