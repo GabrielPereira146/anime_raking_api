@@ -38,7 +38,7 @@ public class WorkController {
 
     }
 
-    @GetMapping("/bestWorks")
+    @GetMapping("/popularWorks")
     public List<WorksResponseDTO> getBestWorks() {
 
         List<WorksResponseDTO> workList = worksRepository.findBestWorks(startDate, endDate).stream()
@@ -56,7 +56,26 @@ public class WorkController {
 
     @GetMapping("/animes/season")
     public List<AnimeResponseDTO> getSeasonAnimes() {
+        
         List<AnimeResponseDTO> animeList = animeRepository.findSeasonAnime(startDate, endDate).stream()
+                .map(AnimeResponseDTO::new).toList();
+        return animeList;
+
+    }
+
+    @GetMapping("/animes/popular")
+    public List<AnimeResponseDTO> getPopularAnimes() {
+        
+        List<AnimeResponseDTO> animeList = animeRepository.findPopularAnimes(startDate, endDate).stream()
+                .map(AnimeResponseDTO::new).toList();
+        return animeList;
+
+    }
+
+    @GetMapping("/animes/top")
+    public List<AnimeResponseDTO> getTopAnimes() {
+        
+        List<AnimeResponseDTO> animeList = animeRepository.findTopAnimes().stream()
                 .map(AnimeResponseDTO::new).toList();
         return animeList;
 
@@ -68,9 +87,23 @@ public class WorkController {
         return mangaList;
     }
 
+    @GetMapping("/mangas/top")
+    public List<MangaResponseDTO> getTopMangas() {
+        List<MangaResponseDTO> mangaList = mangaRepository.findTopMangas().stream().map(MangaResponseDTO::new).toList();
+        return mangaList;
+    }
+
     @GetMapping("/mangas/season")
     public List<MangaResponseDTO> getSeasonMangas() {
         List<MangaResponseDTO> mangaList = mangaRepository.findSeasonManga(startDate, endDate).stream()
+                .map(MangaResponseDTO::new).toList();
+        return mangaList;
+
+    }
+
+    @GetMapping("/mangas/popular")
+    public List<MangaResponseDTO> getPopularMangas() {
+        List<MangaResponseDTO> mangaList = mangaRepository.findPopularMangas(startDate, endDate).stream()
                 .map(MangaResponseDTO::new).toList();
         return mangaList;
 
